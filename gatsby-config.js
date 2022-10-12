@@ -1,21 +1,9 @@
-
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
 module.exports = {
   siteMetadata: {
     title: `personal-website`,
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
-    {
-      resolve: "gatsby-source-contentful",
-      options: {
-        accessToken: process.env.API_KEY_CONTENTFUL,
-        spaceId: process.env.SPACE_ID,
-      },
-    },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
@@ -42,6 +30,23 @@ module.exports = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+        web: [
+          {
+            name: `Inter`,
+            file: `https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap`,
+          },
+          {
+            name: `Fira Code`,
+            file: `https://fonts.googleapis.com/css2?family=Fira+Code&display=swap`,
+          },
+        ],
+      },
     },
   ],
 };
