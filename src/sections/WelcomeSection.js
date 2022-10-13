@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { colors } from '../values/variables';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const SectionContainer = styled.div`
     display: flex;
@@ -49,6 +50,11 @@ const TitleContainer = styled.div`
     margin: 10px 0 60px 0;
 `
 
+const Icons = styled.div`
+    display: flex;
+    margin-top: 80px;
+`
+
 
 
 
@@ -62,7 +68,18 @@ const WelcomeSection = () => {
                     <SubHeader>I build backend stuff.</SubHeader>
                 </TitleContainer>
                 <DescriptionParagraph>I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at Upstatement.</DescriptionParagraph>
-                
+                <Icons>
+                    <FontAwesomeIcon 
+                        icon={faGithub}
+                        color={colors.light}
+                        style={{margin:'0 20 0 0',width: '28px', height: '28px' }}
+                    />
+                    <FontAwesomeIcon 
+                        icon={faLinkedin}
+                        color={colors.light}
+                        style={{margin:'0 0 0 0', width: '28px', height: '28px' }}
+                    />
+                </Icons>
             </ContentContainer>
         </SectionContainer>
     )
