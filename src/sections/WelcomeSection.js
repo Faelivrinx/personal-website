@@ -1,15 +1,22 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { colors } from '../values/variables';
+import { variables, typography } from '../values';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+const sectionContent = {
+    hello: "Hello, I'm",
+    name: "Dominik Jurasz",
+    profession: "I build backend stuff.",
+    description: "I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at Upstatement.",
+}
 
 const SectionContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: ${colors.dark};
+    background-color: ${variables.dark};
     border: 10px solid white;
 `
 
@@ -21,28 +28,21 @@ const ContentContainer = styled.div`
 
 const SmallHeader = styled.h3`
     font-family: 'Fira Code', sans-serif;
-    font-size: 14px;
-    color: ${colors.yellow};
+    font-size: ${typography.s};
+    color: ${variables.yellow};
 `
 
-const MainHeader = styled.h1`
-    font-size: 80px;
+const Header = styled.h1`
+    font-size: ${typography.xxl};
     font-weight: 700;
-    color: ${colors.light};
-
-`
-
-const SubHeader = styled.h2`
-    font-size: 80px;
-    font-weight: 700;
-    color: ${colors.grey};
+    color: ${props => props.color ? props.color : variables.light};
 `
 
 const DescriptionParagraph = styled.p`
     max-width: 600px;
-    font-size: 20px;
+    font-size: ${typography.m};
     font-weight: 500;
-    color: ${colors.grey};
+    color: ${variables.grey};
     letter-spacing: 137,5%;
 `
 
@@ -55,28 +55,25 @@ const Icons = styled.div`
     margin-top: 80px;
 `
 
-
-
-
 const WelcomeSection = () => {
     return (
         <SectionContainer>
             <ContentContainer>
-                <SmallHeader>Hello, I'm</SmallHeader>
+                <SmallHeader>{sectionContent.hello}</SmallHeader>
                 <TitleContainer>
-                    <MainHeader>Dominik Jurasz</MainHeader>
-                    <SubHeader>I build backend stuff.</SubHeader>
+                    <Header>{sectionContent.name}</Header>
+                    <Header color={variables.grey}>{sectionContent.profession}</Header>
                 </TitleContainer>
-                <DescriptionParagraph>I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at Upstatement.</DescriptionParagraph>
+                <DescriptionParagraph>{sectionContent.description}</DescriptionParagraph>
                 <Icons>
                     <FontAwesomeIcon 
                         icon={faGithub}
-                        color={colors.light}
+                        color={variables.light}
                         style={{margin:'0 20 0 0',width: '28px', height: '28px' }}
                     />
                     <FontAwesomeIcon 
                         icon={faLinkedin}
-                        color={colors.light}
+                        color={variables.light}
                         style={{margin:'0 0 0 0', width: '28px', height: '28px' }}
                     />
                 </Icons>
