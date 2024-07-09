@@ -1,0 +1,20 @@
+---
+import Header from "../components/header.astro";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <Fragment set:html={import.meta.env.HEADER_INJECT} />
+        <link rel="icon" type="image/x-icon" href="../assets/images/favicon.svg" />
+        <script src="../assets/css/main.css"></script>
+    </head>
+    <body class="antialiased bg-white dark:bg-neutral-950">
+        <Header />
+    </body>
+</html>
+    <!-- <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png" /> -->
