@@ -5,16 +5,28 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{title}</title>
-        <Fragment set:html={import.meta.env.HEADER_INJECT} />
-        <link rel="icon" type="image/x-icon" href="../assets/images/favicon.svg" />
-        <script src="../assets/css/main.css"></script>
-    </head>
-    <body class="antialiased bg-white dark:bg-neutral-950">
-        <Header />
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <script is:inline>
+      if (typeof Storage !== "undefined") {
+        if (
+          localStorage.getItem("dark_mode") &&
+          localStorage.getItem("dark_mode") == "true"
+        ) {
+          document.documentElement.classList.add("dark");
+        }
+      }
+    </script>
+
+    <Fragment set:html={import.meta.env.HEADER_INJECT} />
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.svg" />
+    <script src="../assets/css/main.css"></script>
+  </head>
+  <body class="antialiased bg-white dark:bg-neutral-950">
+    <Header />
+    <script src="../assets/js/main.js"></script>
+  </body><!-- <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png" /> -->
 </html>
-    <!-- <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png" /> -->
