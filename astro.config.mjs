@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://faelivrinx.github.io",
+  site: "https://faelivrinx.github.io/personal-website/",
   base: "/",
   integrations: [mdx(), sitemap(), tailwind()],
 });
