@@ -5,11 +5,10 @@
   },
   {
     "name": "Posts",
-    "url": "/personal-website/posts"
+    "url": "/personal-website/blog"
   },
   {
     "name": "About",
     "url": "/personal-website/about"
   }
 ]
-
