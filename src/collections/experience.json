@@ -4,27 +4,27 @@
     "role": "Java Software Engineer",
     "company": "Inetum",
     "description": "Creating a new feature for warehouse managment system.",
-    "logo": "/personal-website/assets/images/experiences/inetum.webp"
+    "logo": "/assets/images/experiences/inetum.webp"
   },
   {
     "dates": "January 2023 · October 2023",
     "role": "Java Software Engineer",
     "company": "Iteo",
     "description": "Developing communication system for business clients.",
-    "logo": "/personal-website/assets/images/experiences/iteo.png"
+    "logo": "/assets/images/experiences/iteo.png"
   },
   {
     "dates": "February 2021 · January 2023 ",
     "role": "Software Engineer",
     "company": "Infobip",
     "description": "Integrate key business systems with Infobip's communication platform.",
-    "logo": "/personal-website/assets/images/experiences/infobip.png"
+    "logo": "/assets/images/experiences/infobip.png"
   },
   {
     "dates": "November 2019 · February 2021",
     "role": "Software Engineer",
     "company": "Ailleron",
     "description": "Working on SSO solution for a telco company.",
-    "logo": "/personal-website/assets/images/experiences/ailleron.webp"
+    "logo": "/assets/images/experiences/ailleron.webp"
   }
 ]

@@ -1,14 +1,14 @@
 [
   {
     "name": "Home",
-    "url": "/personal-website/"
+    "url": "/"
   },
   {
     "name": "Blog",
-    "url": "/personal-website/blog"
+    "url": "/blog"
   },
   {
     "name": "About",
-    "url": "/personal-website/about"
+    "url": "/about"
   }
 ]
