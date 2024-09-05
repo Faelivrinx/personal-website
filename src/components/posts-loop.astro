@@ -7,7 +7,7 @@ const { count } = Astro.props;
 const postsLoop = allPosts.slice(0, count).map((post) => {
   return {
     ...(post.data || {}),
-    link: `/personal-website/blog/${post.slug}`,
+    link: `/blog/${post.slug}`,
   };
 });
 ---
