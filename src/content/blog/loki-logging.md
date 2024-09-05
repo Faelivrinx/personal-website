@@ -16,10 +16,12 @@ While this sounds great, it comes with a trade-off. Elasticsearch tends to consu
 Because of these concerns, I decided to explore Grafana Loki. Loki is designed to be more resource-efficient by minimizing indexing.
 
 ## Prerequirements
+
 - minikube / kubernetes cluster
 - helm
 
 ## Set-up grafana helm chart
+
 To get started with Grafana Loki, I chose to use a Minikube environment along with Helm, the package manager for Kubernetes. Helm simplifies the configuration of distributed systems, making it easier to manage complex setups. I could have opted for a simpler approach, like using plain Docker or working directly on a virtual machine, but I was keen to explore this within a Kubernetes cluster.
 
 `helm repo add grafana https://grafana.github.io/helm-charts`
@@ -35,8 +37,7 @@ Next, I wanted to review the default configuration values for the Loki stack. Th
 With the loki.yaml file ready for editing, I made modifications to tailor the configuration to my needs. Here’s an example of the adjustments I made:
 
 ```yaml
-... 
-
+---
 loki:
   enabled: true
   isDefault: true
@@ -94,8 +95,6 @@ grafana:
       maxLines: 1000
   image:
     tag: latest
-...
-
 ```
 
 The key part of the configuration is ensuring that Promtail {1} and Grafana are enabled {2}. I also added settings {3} to extract data from JSON logs to include additional labels such as level, method, and msg. This configuration part was totaly optional and tailored to sample app, which will be created in next step.
@@ -107,9 +106,11 @@ Finally, it was a good time to apply changes and install grafana/loki-stack
 After running this command, I received confirmation that Loki was deployed and ready to use.
 
 ## Set-up sample application
+
 To demonstrate how logs are collected and queried, I prepared a sample application written in Go. This section provides a basic overview of the necessary files to run the application.
 
 **main.go**
+
 ```go
 package main
 
@@ -147,6 +148,7 @@ func main() {
 ```
 
 **Dockerfile**
+
 ```docker
 FROM golang:1.22 as builder
 WORKDIR /app
@@ -163,6 +165,7 @@ CMD ["./golang-app"]
 ```
 
 **deployment.yaml**
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -192,6 +195,7 @@ spec:
 ```
 
 **service.yaml**
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -214,22 +218,27 @@ docker build -t dj/golang-app:latest .
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
+
 If you’re unfamiliar with these commands, I highly recommend learning the basics of Docker and Kubernetes.
 
 To check the status of your deployment, use
+
 ```bash
 kubectl get all -n default
 ```
 
-
 ## Loki
+
 With everything up and running in my Minikube environment, I just needed to make one final tweak to access the Grafana dashboard. Instead of going the NodePort route, I opted to set up port-forwarding with the following command:
+
 ```bash
 kubectl port-forward pod/loki-grafana-b86d8579f-76tr9 9090:3000 -n loki-playground # {1}
 ```
+
 To get the exact name of the Grafana pod, I used `kubectl get pod -n loki-playground` and noted it down.
 
 Next up was grabbing the generated password for Grafana. A quick command did the trick:
+
 ```bash
 kubectl get secret --namespace loki-playground loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
@@ -238,9 +247,9 @@ And just like that, I could now access Grafana at `http://localhost:9090`.
 
 With the setup complete, I headed over to the "Explore" section in Grafana and selected "Loki (default)" to start searching through logs.
 
-![grafana loki explore](/personal-website/assets/images/grafana_loki.png)
+![grafana loki explore](/assets/images/grafana_loki.png)
 
-Everything seemed ready to go, but when I filtered by the *app=golang-app* label, I realized there were no logs yet. Time to fix that!
+Everything seemed ready to go, but when I filtered by the _app=golang-app_ label, I realized there were no logs yet. Time to fix that!
 
 Since the Golang app is running in the default namespace and exposed via a NodePort service, I needed to get the Minikube IP and the NodePort for the app. Once I had those, I could send a request to the app.
 
@@ -256,11 +265,12 @@ In my case it was `curl http://192.168.49.2:30641/status`
 
 And voilà, the first logs started rolling in!
 
-![grafana loki query](/personal-website/assets/images/grafana_loki_query.png)
+![grafana loki query](/assets/images/grafana_loki_query.png)
 
 ## Summary
+
 Configuring Loki turned out to be a relatively straightforward process, thanks to the Helm charts. After a few necessary adjustments, like enabling Grafana and setting up log parsing for JSON, everything fell into place quite smoothly.
 
 While it’s easy to get Loki up and running, mastering its more advanced configuration options, such as pipeline stages and understanding the full scope of its configuration settings, can be challenging.
 
-In conclusion, Loki feels like a tool that’s really built for log aggregation, unlike Elasticsearch, which is an engine designed for advanced searching. This makes Loki a solid choice if you’re specifically focused on managing logs. Definitely worth trying! 
+In conclusion, Loki feels like a tool that’s really built for log aggregation, unlike Elasticsearch, which is an engine designed for advanced searching. This makes Loki a solid choice if you’re specifically focused on managing logs. Definitely worth trying!
