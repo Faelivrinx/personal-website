@@ -1,6 +1,4 @@
 ---
-import experiences from "../collections/experience.json";
-import AboutExperience from "../components/about-experience.astro";
 import PageHeading from "../components/page-heading.astro";
 import Layout from "../layouts/main.astro";
 ---
@@ -17,52 +15,366 @@ import Layout from "../layouts/main.astro";
       class="relative z-30 w-full my-10 rounded-xl"
     />
 
-    <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">Tech stack</h2>
-    <ul
-      class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400"
-    >
-      <li>Java</li>
-      <li>Spring Framework</li>
-      <li>RDBMS</li>
-      <li>Web (html/css/js)</li>
-      <li>React</li>
-      <li>Kafka</li>
-      <li>RabbitMQ</li>
-      <li>Other cool stuff like: ELK, Prometheus, Grafana, CI/CD...</li>
-    </ul>
-    <h2
-      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
-    >
-      Experience
-    </h2>
-    <div class="px-5 py-10">
-      {
-        experiences.map((experience, loop) => {
-          return (
-            <>
-              {loop == 0 || loop == 1 || loop == 2 ? (
-                <div class="pb-10 border-l border-gray-200 dark:border-neutral-700">
-                  <AboutExperience
-                    dates={experience.dates}
-                    role={experience.role}
-                    company={experience.company}
-                    description={experience.description}
-                    logo={experience.logo}
-                  />
-                </div>
-              ) : (
-                <AboutExperience
-                  dates={experience.dates}
-                  role={experience.role}
-                  company={experience.company}
-                  description={experience.description}
-                  logo={experience.logo}
+    <div class="flex flex-wrap gap-4 mb-10">
+      <a
+        href="mailto:jurasz.do@gmail.com"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-lg transition-colors"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+          ></path>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+          ></path>
+        </svg>
+        Get in touch
+      </a>
+      <div
+        class="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400"
+      >
+        <span class="flex items-center gap-1">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Poland
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="mb-4 text-2xl font-bold dark:text-neutral-200">Profile</h2>
+      <p
+        class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base"
+      >
+        I'm a backend-focused software engineer with 6+ years of experience
+        building and scaling applications that power real-world businesses. Most
+        cloud-native platforms, but I also enjoy working with modern frontend of
+        my work lives in the Java/Kotlin ecosystem, microservices, and
+        frameworks like React and Vue.js. I like solving tough problems, making
+        systems reliable, and creating solutions that feel fast and easy to use.
+        I'm open to roles where I can go deep as a backend specialist or
+        contribute across the stack as a full-stack developer.
+      </p>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="mb-4 text-2xl font-bold dark:text-neutral-200">
+        Core Competencies
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Backend Development
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Java, Kotlin, Spring, CQRS, Event Sourcing, DDD
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Frontend Development
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            React, Vue.js, TypeScript, HTML5, CSS3
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Cloud & DevOps
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Kubernetes, Docker, GCP, OpenShift, Helm, Grafana, Prometheus
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Databases
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            PostgreSQL, MySQL, MongoDB, Elasticsearch
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Messaging & Streaming
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Apache Kafka, RabbitMQ
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
+            Software Practices
+          </h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            SOLID, Design Patterns, KISS, Agile/Scrum, Kanban, TDD, DevOps
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="mb-8 text-2xl font-bold dark:text-neutral-200">
+        Professional Experience
+      </h2>
+
+      <div class="relative">
+        <div
+          class="absolute left-7 top-0 bottom-0 w-0.5 bg-neutral-300 dark:bg-neutral-600"
+        >
+        </div>
+
+        <div class="space-y-12">
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <img
+                  src="/assets/images/experiences/inetum.webp"
+                  class="w-8 h-8"
+                  alt="Inetum"
                 />
-              )}
-            </>
-          );
-        })
-      }
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Engineer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Inetum / E-Commerce Customer – Poland
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="inline-flex items-center px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded-full"
+                  >
+                    Current
+                  </span>
+                  <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                    >11/2024 – Present</span
+                  >
+                </div>
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Driving productization of e-commerce catalog data, improving
+                  consistency, scalability, and accuracy while contributing to
+                  system architecture and reliability within a microservice
+                  ecosystem.</span
+                >
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <img
+                  src="/assets/images/experiences/inetum.webp"
+                  alt="Inetum"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Engineer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Inetum / Automotive Customer – Poland
+                  </p>
+                </div>
+                <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                  >10/2023 – 11/2024</span
+                >
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Developed self-service platforms and backend services with
+                  CQRS, Event Sourcing, and KSeF integration, enhancing
+                  scalability, compliance, and system performance.</span
+                >
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <img
+                  src="/assets/images/experiences/iteo.png"
+                  alt="Iteo"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Engineer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Iteo / Communication Customer – Poland
+                  </p>
+                </div>
+                <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                  >01/2023 – 09/2023</span
+                >
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Led backend development of a scalable internal communication
+                  platform with media integration, ensuring reliable delivery of
+                  core features.</span
+                >
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <img
+                  src="/assets/images/experiences/infobip.png"
+                  alt="Infobip"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Engineer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Infobip / Communication Platform – Croatia
+                  </p>
+                </div>
+                <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                  >02/2021 – 12/2022</span
+                >
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Delivered large-scale CPaaS integrations and microservices,
+                  working across backend and frontend while engaging in
+                  client-facing solution design.</span
+                >
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <img
+                  src="/assets/images/experiences/ailleron.webp"
+                  alt="Ailleron"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Developer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Ailleron / Telecommunication Customer – Poland
+                  </p>
+                </div>
+                <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                  >11/2019 – 02/2021</span
+                >
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Enhanced telecom account management systems, improved IAM
+                  with SSO, and optimized microservices for resilience and
+                  performance.</span
+                >
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-6">
+            <div class="relative z-10 flex-shrink-0">
+              <div
+                class="w-14 h-14 bg-white border rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700 flex items-center justify-center"
+              >
+                <span
+                  class="text-sm font-bold text-neutral-600 dark:text-neutral-400"
+                  >NS</span
+                >
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold dark:text-white">
+                    Software Developer
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-300">
+                    Norbsoft – Poland
+                  </p>
+                </div>
+                <span class="text-sm text-neutral-500 dark:text-neutral-400"
+                  >09/2018 – 11/2019</span
+                >
+              </div>
+              <ul
+                class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
+              >
+                <span
+                  >Built APIs and frontend features for a telehealth app,
+                  focusing on responsiveness, reliability, and user experience.</span
+                >
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <h2
