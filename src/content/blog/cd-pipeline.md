@@ -1,11 +1,9 @@
 ---
-layout: "../../layouts/post.astro"
 title: "Building a GitOps-Driven CD Pipeline with ArgoCD"
 description: "Building a GitOps-Driven CD Pipeline with Harbor, Gitlab Runner, and ArgoCD on Minikube"
 pubDate: "Sep 25 2024"
+tags: ["DevOps", "GitOps", "Kubernetes", "CI/CD", "ArgoCD"]
 ---
-
-# Building a GitOps-Driven CD Pipeline with ArgoCD
 
 Today, I set out to build a local Continuous Delivery (CD) pipeline using some cool looking tools: Harbor, Gitlab Runner and ArgoCD. As an environment I used minikube cluster. My main goal was to set up a complete CD workflow where I could seamlessly deploy and manage my Kubernetes applications. I didn't want to prepare very sophisticated pipeline, however it might be a good starting point for more advanced examples. 
 

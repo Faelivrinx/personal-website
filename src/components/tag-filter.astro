@@ -1,0 +1,145 @@
+---
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+
+// Extract all unique tags
+const allTags = [
+  ...new Set(allPosts.flatMap((post) => post.data.tags || [])),
+].sort();
+---
+
+<div class="mb-8">
+  <div class="flex items-center gap-3 mb-4">
+    <svg
+      class="w-5 h-5 text-neutral-600 dark:text-neutral-400"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+      ></path>
+    </svg>
+    <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+      Filter by Tag
+    </h3>
+  </div>
+
+  <div class="flex flex-wrap gap-2">
+    <button
+      id="tag-all"
+      class="tag-filter-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all bg-indigo-600 text-white hover:bg-indigo-700"
+      data-tag="all"
+    >
+      All Posts
+    </button>
+    {
+      allTags.map((tag) => (
+        <button
+          class="tag-filter-btn px-4 py-2 text-sm font-medium rounded-lg transition-all bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+          data-tag={tag}
+        >
+          {tag}
+        </button>
+      ))
+    }
+  </div>
+
+  <div id="post-count" class="mt-4 text-sm text-neutral-600 dark:text-neutral-400"
+  >
+  </div>
+</div>
+
+<script>
+  function initTagFiltering() {
+    const filterButtons = document.querySelectorAll(".tag-filter-btn");
+    const postItems = document.querySelectorAll(".post-item");
+    const postCount = document.getElementById("post-count");
+
+    function updatePostCount(count: number, total: number) {
+      if (postCount) {
+        if (count === total) {
+          postCount.textContent = `Showing all ${total} posts`;
+        } else {
+          postCount.textContent = `Showing ${count} of ${total} posts`;
+        }
+      }
+    }
+
+    function filterPosts(selectedTag: string) {
+      let visibleCount = 0;
+
+      postItems.forEach((item) => {
+        const tagsAttr = item.getAttribute("data-tags");
+        if (!tagsAttr) return;
+
+        const tags = JSON.parse(tagsAttr);
+
+        if (selectedTag === "all" || tags.includes(selectedTag)) {
+          (item as HTMLElement).style.display = "block";
+          visibleCount++;
+        } else {
+          (item as HTMLElement).style.display = "none";
+        }
+      });
+
+      updatePostCount(visibleCount, postItems.length);
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedTag = button.getAttribute("data-tag") || "all";
+
+        // Update button styles
+        filterButtons.forEach((btn) => {
+          btn.classList.remove(
+            "active",
+            "bg-indigo-600",
+            "text-white",
+            "hover:bg-indigo-700",
+          );
+          btn.classList.add(
+            "bg-neutral-100",
+            "dark:bg-neutral-800",
+            "text-neutral-700",
+            "dark:text-neutral-300",
+            "hover:bg-neutral-200",
+            "dark:hover:bg-neutral-700",
+          );
+        });
+
+        button.classList.add(
+          "active",
+          "bg-indigo-600",
+          "text-white",
+          "hover:bg-indigo-700",
+        );
+        button.classList.remove(
+          "bg-neutral-100",
+          "dark:bg-neutral-800",
+          "text-neutral-700",
+          "dark:text-neutral-300",
+          "hover:bg-neutral-200",
+          "dark:hover:bg-neutral-700",
+        );
+
+        // Filter posts
+        filterPosts(selectedTag);
+      });
+    });
+
+    // Initialize count
+    updatePostCount(postItems.length, postItems.length);
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTagFiltering);
+  } else {
+    initTagFiltering();
+  }
+</script>

@@ -1,0 +1,72 @@
+---
+// Giscus Comments Component
+// Configure your Giscus settings at https://giscus.app
+---
+
+<section id="comments" class="w-full max-w-2xl mx-auto mt-12 mb-8 px-7 lg:px-0">
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+      Comments
+    </h2>
+    <div
+      class="h-px bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-200 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800"
+    >
+    </div>
+  </div>
+
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo="Faelivrinx/personal-website"
+    data-repo-id="R_kgDOMSsvSg"
+    data-category="General"
+    data-category-id="DIC_kwDOMSsvSs4CxZjb"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="pl"
+    crossorigin="anonymous"
+    async></script>
+</section>
+
+<script is:inline>
+  // Dark mode theme switcher for Giscus
+  function updateGiscusTheme() {
+    const theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe) return;
+
+    iframe.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: theme,
+          },
+        },
+      },
+      "https://giscus.app",
+    );
+  }
+
+  // Update theme when dark mode changes
+  const observer = new MutationObserver(updateGiscusTheme);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  // Update theme on initial load after Giscus iframe loads
+  window.addEventListener("message", (event) => {
+    if (event.origin !== "https://giscus.app") return;
+    if (!(typeof event.data === "object" && event.data.giscus)) return;
+
+    // Giscus is ready, update theme
+    updateGiscusTheme();
+  });
+</script>
