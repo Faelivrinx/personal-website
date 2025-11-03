@@ -1,9 +1,32 @@
 ---
 import Layout from "./main.astro";
-const { frontmatter } = Astro.props;
+import Comments from "../components/comments.astro";
+
+const { frontmatter, readingTime } = Astro.props;
+
+// Format publication date
+const pubDate = new Date(frontmatter.pubDate);
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <Layout title={frontmatter.title}>
+  <!-- Reading Progress Bar -->
+  <div
+    id="reading-progress-container"
+    class="fixed top-0 left-0 w-full h-1 bg-neutral-200 dark:bg-neutral-800 z-50"
+  >
+    <div
+      id="reading-progress-bar"
+      class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-150 ease-out"
+      style="width: 0%"
+    >
+    </div>
+  </div>
+
   <main
     class="relative z-30 max-w-4xl pb-1 mx-auto mt-10 bg-white dark:bg-neutral-950 md:rounded-t-md text-neutral-900"
   >
@@ -19,10 +42,49 @@ const { frontmatter } = Astro.props;
       >
       </div>
       <h1
-        class="w-full max-w-2xl mx-auto text-3xl font-bold leading-tight tracking-tighter text-left md:mb-12 md:text-4xl dark:text-neutral-100 lg:text-5xl md:leading-none"
+        class="w-full max-w-2xl mx-auto text-3xl font-bold leading-tight tracking-tighter text-left md:text-4xl dark:text-neutral-100 lg:text-5xl md:leading-none"
       >
-        
+        {frontmatter.title}
       </h1>
+
+      <div
+        class="flex flex-wrap items-center gap-4 w-full max-w-2xl mx-auto mt-4 md:mt-6 text-sm text-neutral-600 dark:text-neutral-400"
+      >
+        <time datetime={frontmatter.pubDate} class="flex items-center gap-1.5">
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          <span>{formattedDate}</span>
+        </time>
+
+        <span class="text-neutral-300 dark:text-neutral-700">•</span>
+
+        <div class="flex items-center gap-1.5">
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>{readingTime} min read</span>
+        </div>
+      </div>
     </div>
 
     <article
@@ -30,5 +92,36 @@ const { frontmatter } = Astro.props;
     >
       <slot />
     </article>
+
+    <Comments />
   </main>
 </Layout>
+
+<script>
+  // Reading progress bar functionality
+  function updateReadingProgress() {
+    const progressBar = document.getElementById("reading-progress-bar");
+    if (!progressBar) return;
+
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollableHeight = documentHeight - windowHeight;
+
+    const scrolled = window.scrollY;
+    const progress = (scrolled / scrollableHeight) * 100;
+
+    progressBar.style.width = `${Math.min(progress, 100)}%`;
+  }
+
+  window.addEventListener("scroll", updateReadingProgress, { passive: true });
+
+  document.addEventListener("DOMContentLoaded", updateReadingProgress);
+
+  window.addEventListener("resize", updateReadingProgress, { passive: true });
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

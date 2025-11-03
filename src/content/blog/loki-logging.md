@@ -1,11 +1,8 @@
 ---
-layout: "../../layouts/post.astro"
 title: "Loki Logging"
 description: "The post is about simple loki logging as an alternative to ELK stack"
 pubDate: "Jul 25 2024"
 ---
-
-# Loki Logging
 
 Logs play a crucial role in our daily work as a software developers. They are the primary source for understanding what’s happening under the hood and for spotting issues. However, managing logs can be a challenging task, especially in complex systems with many components.
 
