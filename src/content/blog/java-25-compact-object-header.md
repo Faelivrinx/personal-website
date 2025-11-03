@@ -2,6 +2,7 @@
 title: "Java 25 Compact Object Header"
 description: "Analyzing the impact of the new compact object header in Java 25 on memory usage and performance."
 pubDate: "Oct 04 2025"
+tags: ["Java", "Performance", "Memory", "JVM"]
 ---
 
 If you're a Java developer, you know that memory and performance are king. We're always looking for ways to make our applications run faster and use fewer resources. Well, Java 25 has a fantastic new feature that does just that, and it's called **Compact Object Headers** (JEP 519).

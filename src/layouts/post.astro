@@ -1,6 +1,7 @@
 ---
 import Layout from "./main.astro";
 import Comments from "../components/comments.astro";
+import PostTags from "../components/post-tags.astro";
 
 const { frontmatter, readingTime } = Astro.props;
 
@@ -85,6 +86,8 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
           <span>{readingTime} min read</span>
         </div>
       </div>
+
+      <PostTags tags={frontmatter.tags} />
     </div>
 
     <article
