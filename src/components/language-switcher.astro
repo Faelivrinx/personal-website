@@ -1,0 +1,42 @@
+---
+import { localeFor, localizedPath } from "../i18n";
+const locale = localeFor(Astro.url);
+const languages = [
+  { code: "en", label: "English" },
+  { code: "pl", label: "Polski" },
+] as const;
+---
+
+<div
+  role="group"
+  aria-label={locale === "pl" ? "Język strony" : "Site language"}
+  class="language-switcher flex shrink-0 items-center rounded-full border border-neutral-200 bg-neutral-100/80 p-1 text-xs font-semibold dark:border-neutral-700 dark:bg-neutral-900"
+>
+  {
+    languages.map(({ code, label }) =>
+      code === locale ? (
+        <span
+          aria-current="true"
+          aria-label={label}
+          title={label}
+          class="flex h-9 w-10 items-center justify-center rounded-full bg-white text-neutral-950 shadow-sm dark:bg-neutral-700 dark:text-white"
+        >
+          {code.toUpperCase()}
+        </span>
+      ) : (
+        <a
+          href={localizedPath(Astro.url.pathname, code)}
+          lang={code}
+          hreflang={code}
+          aria-label={
+            code === "pl" ? "Przełącz na polski" : "Switch to English"
+          }
+          title={label}
+          class="flex h-9 w-10 items-center justify-center rounded-full text-neutral-500 transition-colors hover:bg-white/80 hover:text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
+        >
+          {code.toUpperCase()}
+        </a>
+      ),
+    )
+  }
+</div>

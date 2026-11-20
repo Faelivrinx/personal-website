@@ -2,6 +2,7 @@
 import { localeFor, localizedPath, translate } from "../i18n";
 const locale = localeFor(Astro.url);
 import menus from "../collections/menu.json";
+import LanguageSwitcher from "./language-switcher.astro";
 import Logo from "../components/logo.astro";
 ---
 
@@ -19,11 +20,11 @@ import Logo from "../components/logo.astro";
     >
     </div>
     <nav
-      class="relative z-30 flex flex-row-reverse justify-start w-full text-sm sm:justify-end text-neutral-500 dark:text-neutral-400 sm:flex-row"
+      class="relative z-30 flex flex-row-reverse items-center justify-start gap-2 w-full text-sm sm:justify-end text-neutral-500 dark:text-neutral-400 sm:flex-row"
     >
       <div
         id="openMenu"
-        class="flex flex-col items-end justify-center w-6 h-6 ml-4 cursor-pointer sm:hidden"
+        class="flex flex-col items-end justify-center w-11 h-11 cursor-pointer sm:hidden"
       >
         <svg
           class="w-8 h-8 dark:text-neutral-200"
@@ -37,7 +38,7 @@ import Logo from "../components/logo.astro";
       </div>
       <div
         id="closeMenu"
-        class="flex flex-col items-end justify-center hidden w-6 h-6 ml-4 -translate-x-1 cursor-pointer sm:hidden"
+        class="flex flex-col items-end justify-center hidden w-11 h-11 cursor-pointer sm:hidden"
       >
         <svg
           class="w-6 h-6 text-neutral-600 dark:text-neutral-200"
@@ -51,7 +52,7 @@ import Logo from "../components/logo.astro";
       </div>
       <div
         id="menu"
-        class="fixed top-[75px] ease-out duration-300 sm:top-0 w-full left-0 sm:py-0 pt-7 pb-4 dm:mx-0 left-0 z-40 flex-col items-end justify-start hidden w-full h-auto text-sm sm:text-base sm:h-auto sm:relative sm:flex-row sm:flex sm:text-sm sm:w-auto sm:pr-0 sm:pt-0"
+        class="fixed top-[75px] ease-out duration-300 sm:top-0 w-full left-0 sm:py-0 pt-7 pb-4 dm:mx-0 left-0 z-40 flex-col items-end justify-start hidden w-full h-auto text-sm sm:text-base sm:h-auto sm:relative sm:flex-row sm:items-center sm:flex sm:text-sm sm:w-auto sm:mr-3 sm:pr-0 sm:pt-0"
       >
         <div
           class="absolute inset-0 top-0 right-0 block w-full h-full px-3 sm:hidden"
@@ -66,7 +67,7 @@ import Logo from "../components/logo.astro";
             return (
               <a
                 href={localizedPath(menu.url, locale)}
-                class="relative flex items-center justify-center w-full px-3 py-2 font-medium tracking-wide text-center duration-200 ease-out sm:py-0 sm:mb-0 md:w-auto hover:text-neutral-900 dark:hover:text-white"
+                class="relative flex items-center justify-center w-full px-3 py-2 font-medium tracking-wide text-center duration-200 ease-out sm:h-11 sm:py-0 sm:mb-0 md:w-auto hover:text-neutral-900 dark:hover:text-white"
               >
                 {translate(locale, menu.name)}
               </a>
@@ -74,20 +75,15 @@ import Logo from "../components/logo.astro";
           })
         }
       </div>
-      <a
-        class="relative z-50 px-3 py-2"
-        href={localizedPath(Astro.url.pathname, locale === "en" ? "pl" : "en")}
-        lang={locale === "en" ? "pl" : "en"}
-        aria-label={locale === "en"
-          ? "Przełącz na polski"
-          : "Switch to English"}>{locale === "en" ? "PL" : "EN"}</a
-      >
-      <div
+      <LanguageSwitcher />
+      <button
+        type="button"
         id="darkToggle"
-        class="relative flex items-center pl-6 ml-4 font-medium tracking-wide cursor-pointer text-neutral-800 group dark:text-white"
+        aria-label={locale === "pl" ? "Zmień motyw" : "Toggle color theme"}
+        class="relative z-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 group dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white"
       >
         <div
-          class="absolute left-0 flex items-center justify-center w-6 h-6 overflow-hidden border-b border-transparent horizon group-hover:border-neutral-600"
+          class="relative flex items-center justify-center w-5 h-5 overflow-hidden"
         >
           <svg
             class="absolute w-6 h-6 transition duration-700 transform ease"
@@ -116,7 +112,7 @@ import Logo from "../components/logo.astro";
             ></path></svg
           >
         </div>
-      </div>
+      </button>
     </nav>
   </div>
 </header>
