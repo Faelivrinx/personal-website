@@ -1,9 +1,9 @@
 ---
-
+import { localeFor, localizedPath } from "../i18n";
 ---
 
 <a
-  href="/"
+  href={localizedPath("/", localeFor(Astro.url))}
   class="h-5 text-base group relative z-30 flex items-center space-x-1.5 text-black dark:text-white font-semibold"
 >
   <span

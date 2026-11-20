@@ -1,4 +1,6 @@
 ---
+import { localeFor, localizedPath, translate } from "../i18n";
+const locale = localeFor(Astro.url);
 import menus from "../collections/menu.json";
 import Logo from "../components/logo.astro";
 ---
@@ -63,15 +65,23 @@ import Logo from "../components/logo.astro";
           menus.map((menu) => {
             return (
               <a
-                href={menu.url}
+                href={localizedPath(menu.url, locale)}
                 class="relative flex items-center justify-center w-full px-3 py-2 font-medium tracking-wide text-center duration-200 ease-out sm:py-0 sm:mb-0 md:w-auto hover:text-neutral-900 dark:hover:text-white"
               >
-                {menu.name}
+                {translate(locale, menu.name)}
               </a>
             );
           })
         }
       </div>
+      <a
+        class="relative z-50 px-3 py-2"
+        href={localizedPath(Astro.url.pathname, locale === "en" ? "pl" : "en")}
+        lang={locale === "en" ? "pl" : "en"}
+        aria-label={locale === "en"
+          ? "Przełącz na polski"
+          : "Switch to English"}>{locale === "en" ? "PL" : "EN"}</a
+      >
       <div
         id="darkToggle"
         class="relative flex items-center pl-6 ml-4 font-medium tracking-wide cursor-pointer text-neutral-800 group dark:text-white"

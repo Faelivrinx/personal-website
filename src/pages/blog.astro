@@ -3,13 +3,19 @@ import PageHeading from "../components/page-heading.astro";
 import PostsLoop from "../components/posts-loop.astro";
 import TagFilter from "../components/tag-filter.astro";
 import Layout from "../layouts/main.astro";
+
+import { localeFor, translate } from "../i18n";
+const locale = localeFor(Astro.url);
+const t = (text: string) => translate(locale, text);
 ---
 
-<Layout title="dominik jurasz - writings">
+<Layout title={t("dominik jurasz - writings")}>
   <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
     <PageHeading
-      title="My Writing"
-      description="Dive into my musings on life and tech in my latest posts; a blend of introspection and innovation. Keep an eye out for fresh insights and updates!"
+      title={t("My Writing")}
+      description={t(
+        "Dive into my musings on life and tech in my latest posts; a blend of introspection and innovation. Keep an eye out for fresh insights and updates!",
+      )}
     />
 
     <div class="mt-10 mb-12">

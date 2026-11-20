@@ -1,7 +1,7 @@
 ---
 title: "Loki Logging"
 description: "The post is about simple loki logging as an alternative to ELK stack"
-pubDate: "Jul 25 2024"
+pubDate: "2024-07-25"
 tags: ["Logging", "Kubernetes", "DevOps", "Observability", "Loki"]
 ---
 

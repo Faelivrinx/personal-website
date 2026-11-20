@@ -1,16 +1,21 @@
 ---
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("blog");
+import { localeFor, localizedPath, dateLabel, translate } from "../i18n";
+const locale = localeFor(Astro.url);
+const allPosts = await getCollection(locale === "pl" ? "blogpl" : "blog");
 
 const { count } = Astro.props;
 
 const postsLoop = allPosts
-  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  )
   .slice(0, count)
   .map((post) => {
     return {
       ...(post.data || {}),
-      link: `/blog/${post.slug}`,
+      link: localizedPath(`/blog/${post.slug}`, locale),
       tags: post.data.tags || [],
     };
   });
@@ -78,7 +83,7 @@ const postsLoop = allPosts
             <span>{post.description}</span>
           </p>
           <div class="mt-2.5 text-xs font-medium text-neutral-800 dark:text-neutral-300">
-            Posted on {post.pubDate.toDateString()}
+            {`${translate(locale, "Posted on")} ${dateLabel(post.pubDate, locale)}`}
           </div>
         </div>
       </div>

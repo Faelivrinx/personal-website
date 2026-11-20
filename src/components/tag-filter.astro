@@ -1,12 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("blog");
+const locale = localeFor(Astro.url);
+const allPosts = await getCollection(locale === "pl" ? "blogpl" : "blog");
 
 // Extract all unique tags
 const allTags = [
   ...new Set(allPosts.flatMap((post) => post.data.tags || [])),
 ].sort();
+
+import { localeFor, translate } from "../i18n";
+const t = (text: string) => translate(locale, text);
 ---
 
 <div class="mb-8">
@@ -25,7 +29,7 @@ const allTags = [
       ></path>
     </svg>
     <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-      Filter by Tag
+      {t("Filter by Tag")}
     </h3>
   </div>
 
@@ -33,23 +37,23 @@ const allTags = [
     <button
       id="tag-all"
       class="tag-filter-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all bg-indigo-600 text-white hover:bg-indigo-700"
-      data-tag="all"
+      data-tag="all">{t("All Posts")}</button
     >
-      All Posts
-    </button>
     {
       allTags.map((tag) => (
         <button
           class="tag-filter-btn px-4 py-2 text-sm font-medium rounded-lg transition-all bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
           data-tag={tag}
         >
-          {tag}
+          {t(tag)}
         </button>
       ))
     }
   </div>
 
-  <div id="post-count" class="mt-4 text-sm text-neutral-600 dark:text-neutral-400"
+  <div
+    id="post-count"
+    class="mt-4 text-sm text-neutral-600 dark:text-neutral-400"
   >
   </div>
 </div>
@@ -63,9 +67,15 @@ const allTags = [
     function updatePostCount(count: number, total: number) {
       if (postCount) {
         if (count === total) {
-          postCount.textContent = `Showing all ${total} posts`;
+          postCount.textContent =
+            document.documentElement.lang === "pl"
+              ? `Wszystkie artykuły: ${total}`
+              : `Showing all ${total} posts`;
         } else {
-          postCount.textContent = `Showing ${count} of ${total} posts`;
+          postCount.textContent =
+            document.documentElement.lang === "pl"
+              ? `Artykuły: ${count} z ${total}`
+              : `Showing ${count} of ${total} posts`;
         }
       }
     }
