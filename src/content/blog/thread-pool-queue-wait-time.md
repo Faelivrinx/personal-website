@@ -1,7 +1,7 @@
 ---
 title: "Your code is fast. Your tasks are waiting."
 description: "Thread pool queues can slow down an application even when CPU usage looks healthy. Measure waiting time to see what execution metrics miss."
-pubDate: "Nov 20 2026"
+pubDate: "2026-11-20"
 tags: ["Java", "Performance", "Concurrency"]
 ---
 

@@ -5,13 +5,9 @@ import PostTags from "../components/post-tags.astro";
 
 const { frontmatter, readingTime } = Astro.props;
 
-// Format publication date
-const pubDate = new Date(frontmatter.pubDate);
-const formattedDate = pubDate.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+import { localeFor, dateLabel } from "../i18n";
+const locale = localeFor(Astro.url);
+const formattedDate = dateLabel(new Date(frontmatter.pubDate), locale);
 ---
 
 <Layout title={frontmatter.title}>
@@ -83,7 +79,9 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
               stroke-width="2"
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <span>{readingTime} min read</span>
+          <span
+            >{readingTime} {locale === "pl" ? "min czytania" : "min read"}</span
+          >
         </div>
       </div>
 

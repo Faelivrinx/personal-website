@@ -1,17 +1,24 @@
 ---
 import Button from "../button.astro";
 import PostsLoop from "../posts-loop.astro";
+
+import { localeFor, translate, localizedPath } from "../../i18n";
+const locale = localeFor(Astro.url);
+const t = (text: string) => translate(locale, text);
 ---
 
 <section class="max-w-4xl mx-auto px-7 lg:px-0">
   <h2
     class="text-2xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-neutral-100"
   >
-    My Writings
+    {t("My Writings")}
   </h2>
   <p class="mb-6 text-base text-neutral-600 dark:text-neutral-400">
-    Along with coding I also like to write about life and technology. Here are
-    some of my recent posts.
+    {
+      t(
+        "Along with coding I also like to write about life and technology. Here are some of my recent posts.",
+      )
+    }
   </p>
 
   <div class="w-full max-w-4xl mx-auto my-7 xl:px-0">
@@ -22,7 +29,10 @@ import PostsLoop from "../posts-loop.astro";
         <PostsLoop count="3" />
 
         <div class="flex items-center justify-center w-full py-5">
-          <Button text="View All My Writing" link="/blog" />
+          <Button
+            text={t("View All My Writing")}
+            link={localizedPath("/blog", locale)}
+          />
         </div>
       </div>
     </div>

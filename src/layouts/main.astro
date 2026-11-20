@@ -2,15 +2,33 @@
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 import SquareLines from "../components/square-lines.astro";
+import { localeFor, localizedPath } from "../i18n";
+const locale = localeFor(Astro.url);
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(localizedPath(Astro.url.pathname, "en"), Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href={new URL(localizedPath(Astro.url.pathname, "pl"), Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localizedPath(Astro.url.pathname, "en"), Astro.site)}
+    />
 
     <script is:inline>
       if (typeof Storage !== "undefined") {

@@ -1,7 +1,7 @@
 ---
 title: "Java 25 Compact Object Header"
 description: "Analyzing the impact of the new compact object header in Java 25 on memory usage and performance."
-pubDate: "Oct 04 2025"
+pubDate: "2025-10-04"
 tags: ["Java", "Performance", "Memory", "JVM"]
 ---
 

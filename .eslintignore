@@ -1,3 +1,6 @@
 .eslintrc.cjs
 tailwind.config.cjs
 src/env.d.ts
+
+dist/
+.astro/

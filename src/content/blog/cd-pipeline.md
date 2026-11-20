@@ -1,7 +1,7 @@
 ---
 title: "Building a GitOps-Driven CD Pipeline with ArgoCD"
 description: "Building a GitOps-Driven CD Pipeline with Harbor, Gitlab Runner, and ArgoCD on Minikube"
-pubDate: "Sep 25 2024"
+pubDate: "2024-09-25"
 tags: ["DevOps", "GitOps", "Kubernetes", "CI/CD", "ArgoCD"]
 ---
 

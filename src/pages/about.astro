@@ -1,13 +1,19 @@
 ---
 import PageHeading from "../components/page-heading.astro";
 import Layout from "../layouts/main.astro";
+
+import { localeFor, translate } from "../i18n";
+const locale = localeFor(Astro.url);
+const t = (text: string) => translate(locale, text);
 ---
 
-<Layout title="dominik jurasz - about">
+<Layout title={t("dominik jurasz - about")}>
   <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
     <PageHeading
-      title="About Me"
-      description="Just a regular guy on a quest to expand his horizons and create mind-blowing software."
+      title={t("About Me")}
+      description={t(
+        "Just a regular guy on a quest to expand his horizons and create mind-blowing software.",
+      )}
     />
 
     <img
@@ -26,9 +32,8 @@ import Layout from "../layouts/main.astro";
           ></path>
           <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
           ></path>
-        </svg>
-        Get in touch
-      </a>
+        </svg>{t("Get in touch")}</a
+      >
       <div
         class="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400"
       >
@@ -38,36 +43,34 @@ import Layout from "../layouts/main.astro";
               fill-rule="evenodd"
               d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
               clip-rule="evenodd"></path>
-          </svg>
-          Poland
-        </span>
+          </svg>{t("Poland")}</span
+        >
       </div>
     </div>
 
     <div class="mb-10">
-      <h2 class="mb-4 text-2xl font-bold dark:text-neutral-200">Profile</h2>
+      <h2 class="mb-4 text-2xl font-bold dark:text-neutral-200">
+        {t("Profile")}
+      </h2>
       <p
         class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base"
       >
-        I'm a backend-focused software engineer with 6+ years of experience
-        building and scaling applications that power real-world businesses. Most
-        cloud-native platforms, but I also enjoy working with modern frontend of
-        my work lives in the Java/Kotlin ecosystem, microservices, and
-        frameworks like React and Vue.js. I like solving tough problems, making
-        systems reliable, and creating solutions that feel fast and easy to use.
-        I'm open to roles where I can go deep as a backend specialist or
-        contribute across the stack as a full-stack developer.
+        {
+          t(
+            "I'm a backend-focused software engineer with 6+ years of experience building and scaling applications that power real-world businesses. Most cloud-native platforms, but I also enjoy working with modern frontend of my work lives in the Java/Kotlin ecosystem, microservices, and frameworks like React and Vue.js. I like solving tough problems, making systems reliable, and creating solutions that feel fast and easy to use. I'm open to roles where I can go deep as a backend specialist or contribute across the stack as a full-stack developer.",
+          )
+        }
       </p>
     </div>
 
     <div class="mb-10">
       <h2 class="mb-4 text-2xl font-bold dark:text-neutral-200">
-        Core Competencies
+        {t("Core Competencies")}
       </h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Backend Development
+            {t("Backend Development")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             Java, Kotlin, Spring, CQRS, Event Sourcing, DDD
@@ -75,7 +78,7 @@ import Layout from "../layouts/main.astro";
         </div>
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Frontend Development
+            {t("Frontend Development")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             React, Vue.js, TypeScript, HTML5, CSS3
@@ -83,7 +86,7 @@ import Layout from "../layouts/main.astro";
         </div>
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Cloud & DevOps
+            {t("Cloud & DevOps")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             Kubernetes, Docker, GCP, OpenShift, Helm, Grafana, Prometheus
@@ -91,7 +94,7 @@ import Layout from "../layouts/main.astro";
         </div>
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Databases
+            {t("Databases")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             PostgreSQL, MySQL, MongoDB, Elasticsearch
@@ -99,7 +102,7 @@ import Layout from "../layouts/main.astro";
         </div>
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Messaging & Streaming
+            {t("Messaging & Streaming")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             Apache Kafka, RabbitMQ
@@ -107,7 +110,7 @@ import Layout from "../layouts/main.astro";
         </div>
         <div>
           <h3 class="font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-            Software Practices
+            {t("Software Practices")}
           </h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">
             SOLID, Design Patterns, KISS, Agile/Scrum, Kanban, TDD, DevOps
@@ -118,7 +121,7 @@ import Layout from "../layouts/main.astro";
 
     <div class="mb-10">
       <h2 class="mb-8 text-2xl font-bold dark:text-neutral-200">
-        Professional Experience
+        {t("Professional Experience")}
       </h2>
 
       <div class="relative">
@@ -146,20 +149,19 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Engineer
+                    {t("Software Engineer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Inetum / E-Commerce Customer – Poland
+                    {t("Inetum / E-Commerce Customer – Poland")}
                   </p>
                 </div>
                 <div class="flex items-center gap-2">
                   <span
                     class="inline-flex items-center px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded-full"
+                    >{t("Current")}</span
                   >
-                    Current
-                  </span>
                   <span class="text-sm text-neutral-500 dark:text-neutral-400"
-                    >11/2024 – Present</span
+                    >{t("11/2024 – Present")}</span
                   >
                 </div>
               </div>
@@ -167,10 +169,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Driving productization of e-commerce catalog data, improving
-                  consistency, scalability, and accuracy while contributing to
-                  system architecture and reliability within a microservice
-                  ecosystem.</span
+                  >{
+                    t(
+                      "Driving productization of e-commerce catalog data, improving consistency, scalability, and accuracy while contributing to system architecture and reliability within a microservice ecosystem.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -194,10 +197,10 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Engineer
+                    {t("Software Engineer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Inetum / Automotive Customer – Poland
+                    {t("Inetum / Automotive Customer – Poland")}
                   </p>
                 </div>
                 <span class="text-sm text-neutral-500 dark:text-neutral-400"
@@ -208,9 +211,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Developed self-service platforms and backend services with
-                  CQRS, Event Sourcing, and KSeF integration, enhancing
-                  scalability, compliance, and system performance.</span
+                  >{
+                    t(
+                      "Developed self-service platforms and backend services with CQRS, Event Sourcing, and KSeF integration, enhancing scalability, compliance, and system performance.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -234,10 +239,10 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Engineer
+                    {t("Software Engineer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Iteo / Communication Customer – Poland
+                    {t("Iteo / Communication Customer – Poland")}
                   </p>
                 </div>
                 <span class="text-sm text-neutral-500 dark:text-neutral-400"
@@ -248,9 +253,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Led backend development of a scalable internal communication
-                  platform with media integration, ensuring reliable delivery of
-                  core features.</span
+                  >{
+                    t(
+                      "Led backend development of a scalable internal communication platform with media integration, ensuring reliable delivery of core features.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -274,10 +281,10 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Engineer
+                    {t("Software Engineer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Infobip / Communication Platform – Croatia
+                    {t("Infobip / Communication Platform – Croatia")}
                   </p>
                 </div>
                 <span class="text-sm text-neutral-500 dark:text-neutral-400"
@@ -288,9 +295,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Delivered large-scale CPaaS integrations and microservices,
-                  working across backend and frontend while engaging in
-                  client-facing solution design.</span
+                  >{
+                    t(
+                      "Delivered large-scale CPaaS integrations and microservices, working across backend and frontend while engaging in client-facing solution design.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -314,10 +323,10 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Developer
+                    {t("Software Developer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Ailleron / Telecommunication Customer – Poland
+                    {t("Ailleron / Telecommunication Customer – Poland")}
                   </p>
                 </div>
                 <span class="text-sm text-neutral-500 dark:text-neutral-400"
@@ -328,9 +337,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Enhanced telecom account management systems, improved IAM
-                  with SSO, and optimized microservices for resilience and
-                  performance.</span
+                  >{
+                    t(
+                      "Enhanced telecom account management systems, improved IAM with SSO, and optimized microservices for resilience and performance.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -353,10 +364,10 @@ import Layout from "../layouts/main.astro";
               >
                 <div>
                   <h3 class="text-xl font-semibold dark:text-white">
-                    Software Developer
+                    {t("Software Developer")}
                   </h3>
                   <p class="text-neutral-600 dark:text-neutral-300">
-                    Norbsoft – Poland
+                    {t("Norbsoft – Poland")}
                   </p>
                 </div>
                 <span class="text-sm text-neutral-500 dark:text-neutral-400"
@@ -367,8 +378,11 @@ import Layout from "../layouts/main.astro";
                 class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400 list-disc list-inside"
               >
                 <span
-                  >Built APIs and frontend features for a telehealth app,
-                  focusing on responsiveness, reliability, and user experience.</span
+                  >{
+                    t(
+                      "Built APIs and frontend features for a telehealth app, focusing on responsiveness, reliability, and user experience.",
+                    )
+                  }</span
                 >
               </ul>
             </div>
@@ -380,19 +394,19 @@ import Layout from "../layouts/main.astro";
     <h2
       class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
     >
-      Let's Connect
+      {t("Let's Connect")}
     </h2>
     <p
       class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
     >
-      If you want to stay up to date with my work be sure to <a
+      {t("If you want to stay up to date with my work be sure to")}<a
         href="https://x.com/dominik_dev_"
         target="_blank"
-        class="text-indigo-600 underline">follow me on twitter</a
-      >, or you can send me an <a
+        class="text-indigo-600 underline">{t("follow me on twitter")}</a
+      >{t(", or you can send me an")}<a
         href="mailto:jurasz.do@gmail.com"
-        class="text-indigo-600 underline">email</a
-      > and I'll be sure to get back to you.
+        class="text-indigo-600 underline">{t("email")}</a
+      >{t("and I'll be sure to get back to you.")}
     </p>
   </section>
 </Layout>

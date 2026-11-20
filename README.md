@@ -37,3 +37,19 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Languages
+
+English keeps the original URLs (`/`, `/about`, `/blog/<slug>`). Polish pages
+use the `/pl/` prefix. The header switches to the equivalent page in the other
+language. UI translations live in `src/i18n/pl.json`; shared templates use
+`translate()` and `localizedPath()` from `src/i18n/index.ts`.
+
+Keep an English article in `src/content/blog/` and its Polish translation in
+`src/content/blogpl/`, with the same filename (and therefore slug). Translate
+the title, description, and prose; retain executable examples and tag identifiers.
+Use ISO dates (`YYYY-MM-DD`) to avoid timezone-dependent publication dates.
+Each language has its own RSS feed: `/rss.xml` and `/pl/rss.xml`.
+
+After building, run `python3 scripts/check-localization.py` to check language
+pairs, navigation, article listings, metadata, and RSS links in the generated site.

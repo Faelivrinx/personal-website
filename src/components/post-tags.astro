@@ -1,4 +1,6 @@
 ---
+import { localeFor, translate } from "../i18n";
+const locale = localeFor(Astro.url);
 interface Props {
   tags: string[];
 }
@@ -24,7 +26,7 @@ const { tags } = Astro.props;
       </svg>
       {tags.map((tag) => (
         <span class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
-          {tag}
+          {translate(locale, tag)}
         </span>
       ))}
     </div>
